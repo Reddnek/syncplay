@@ -20,11 +20,8 @@ import os
 import subprocess
 from string import Template
 
-from distutils.core import setup
-try:
-    from py2exe.build_exe import py2exe
-except ImportError:
-    from py2exe.distutils_buildexe import py2exe
+from py2exe import setup
+from py2exe.setuptools_buildexe import py2exe
 
 import syncplay
 from syncplay.messages import getMissingStrings
@@ -68,7 +65,7 @@ NSIS_SCRIPT_TEMPLATE = r"""
   LoadLanguageFile "$${NSISDIR}\Contrib\Language files\Turkish.nlf"
   LoadLanguageFile "$${NSISDIR}\Contrib\Language files\French.nlf"
   LoadLanguageFile "$${NSISDIR}\Contrib\Language files\SimpChinese.nlf"
- 
+
   Unicode true
 
   Name "Syncplay $version"
@@ -120,12 +117,12 @@ NSIS_SCRIPT_TEMPLATE = r"""
   VIAddVersionKey /LANG=$${LANG_TURKISH} "FileVersion" "$version.0"
   VIAddVersionKey /LANG=$${LANG_TURKISH} "LegalCopyright" "Syncplay"
   VIAddVersionKey /LANG=$${LANG_TURKISH} "FileDescription" "Syncplay"
-  
+
   VIAddVersionKey /LANG=$${LANG_FRENCH} "ProductName" "Syncplay"
   VIAddVersionKey /LANG=$${LANG_FRENCH} "FileVersion" "$version.0"
   VIAddVersionKey /LANG=$${LANG_FRENCH} "LegalCopyright" "Syncplay"
   VIAddVersionKey /LANG=$${LANG_FRENCH} "FileDescription" "Syncplay"
-  
+
   VIAddVersionKey /LANG=$${LANG_SIMPCHINESE} "ProductName" "Syncplay"
   VIAddVersionKey /LANG=$${LANG_SIMPCHINESE} "FileVersion" "$version.0"
   VIAddVersionKey /LANG=$${LANG_SIMPCHINESE} "LegalCopyright" "Syncplay"
@@ -210,7 +207,7 @@ NSIS_SCRIPT_TEMPLATE = r"""
   LangString ^QuickLaunchBar $${LANG_TURKISH} "Hızlı Başlatma Çubuğu"
   LangString ^AutomaticUpdates $${LANG_TURKISH} "Güncellemeleri otomatik denetle"
   LangString ^UninstConfig $${LANG_TURKISH} "Yapılandırma dosyasını silin."
-  
+
   LangString ^SyncplayLanguage $${LANG_FRENCH} "fr"
   LangString ^Associate $${LANG_FRENCH} "Associer Syncplay avec les fichiers multimedias."
   LangString ^Shortcut $${LANG_FRENCH} "Créer Racourcis pour les chemins suivants:"
@@ -219,7 +216,7 @@ NSIS_SCRIPT_TEMPLATE = r"""
   LangString ^QuickLaunchBar $${LANG_FRENCH} "Barre de Lancement Rapide"
   LangString ^AutomaticUpdates $${LANG_FRENCH} "Vérifier automatiquement les mises à jour"
   LangString ^UninstConfig $${LANG_FRENCH} "Supprimer le fichier de configuration."
-  
+
   LangString ^SyncplayLanguage $${LANG_SIMPCHINESE} "zh_CN"
   LangString ^Associate $${LANG_SIMPCHINESE} "将Syncplay与多媒体文件关联。"
   LangString ^Shortcut $${LANG_SIMPCHINESE} "在以下位置创建快捷方式:"
